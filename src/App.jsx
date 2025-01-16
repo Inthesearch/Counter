@@ -11,7 +11,10 @@ function App() {
   const [chosenCount, setChosenCount] = useState(0);
 
   function handleSetClick(enteredNumber) {
-    setChosenCount(enteredNumber);
+    setChosenCount(() => {
+      console.log(enteredNumber);
+      return enteredNumber;
+    });
   }
 
   return (
@@ -19,7 +22,8 @@ function App() {
       <Header />
       <main>
         <CounterConfigure onSetClick={handleSetClick} />
-        <Counter initialCount={chosenCount} />
+        <Counter key={chosenCount} initialCount={chosenCount} />
+        <Counter key={chosenCount + 1} initialCount={chosenCount + 60} />
       </main>
     </>
   );
